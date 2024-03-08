@@ -41,3 +41,13 @@ Route::middleware('auth:sanctum')->group(function (){
 
     Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'store']);
 });
+
+Route::group(['middleware' => ['auth:sanctum', 'is.admin'], 'prefix' => 'admin'], function(){
+    Route::get('/category/parent', [App\Http\Controllers\Admin\CategoryController::class, 'getParent']);
+    Route::get('/category/child/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'getChild']);
+    Route::apiResource('category', App\Http\Controllers\Admin\CategoryController::class);
+
+    Route::post('/create/bead', function (){
+        return Auth()->user();
+    });
+});
