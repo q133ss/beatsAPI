@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Beat extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function file(): \Illuminate\Database\Eloquent\Relations\MorphOne
+    {
+        return $this->morphOne(File::class, 'fileable');
+    }
 }

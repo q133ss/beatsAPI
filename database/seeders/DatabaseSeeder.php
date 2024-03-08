@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Author;
 use App\Models\Beat;
 use App\Models\Category;
+use App\Models\File;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
         foreach (Beat::pluck('id')->all() as $track_id) {
             Payment::create(['beat_id' => $track_id, 'user_id' => 1, 'price' => $prices[rand(0,2)], 'status' => $statuses[rand(0,2)]]);
             DB::table('users_beats')->insert(['user_id' => 1, 'beat_id' => $track_id]);
+            File::create(['fileable_type' => 'App\Models\Beat' ,'fileable_id' => $track_id, 'src' => '/track'.$track_id.'.mp3']);
         }
 
         for ($i = 0; $i < 100; $i++){
