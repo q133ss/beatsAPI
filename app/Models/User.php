@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function getUserBeats(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Beat::class, 'users_beats', 'user_id', 'beat_id')->with('file');
+        return $this->belongsToMany(Beat::class, 'users_beats', 'user_id', 'beat_id')->with('full_file');
     }
 
     public function getUserPayments()

@@ -46,8 +46,6 @@ Route::group(['middleware' => ['auth:sanctum', 'is.admin'], 'prefix' => 'admin']
     Route::get('/category/parent', [App\Http\Controllers\Admin\CategoryController::class, 'getParent']);
     Route::get('/category/child/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'getChild']);
     Route::apiResource('category', App\Http\Controllers\Admin\CategoryController::class);
-
-    Route::post('/create/bead', function (){
-        return Auth()->user();
-    });
+    Route::apiResource('author', App\Http\Controllers\Admin\AuthorController::class);
+    Route::apiResource('beat', App\Http\Controllers\Admin\BeatController::class);
 });
