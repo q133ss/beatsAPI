@@ -52,3 +52,7 @@ Route::group(['middleware' => ['auth:sanctum', 'is.admin'], 'prefix' => 'admin']
     Route::get('/sales', [App\Http\Controllers\Admin\SaleController::class, 'index']);
     Route::get('/sales/{period}', [App\Http\Controllers\Admin\SaleController::class, 'period'])->where('period', 'day|week|month|year');
 });
+
+Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index']);
+Route::get('/beat/{id}', [App\Http\Controllers\BeatController::class, 'show']);
+Route::post('/pay', [App\Http\Controllers\PayController::class, 'pay']);
