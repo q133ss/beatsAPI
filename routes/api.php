@@ -48,4 +48,7 @@ Route::group(['middleware' => ['auth:sanctum', 'is.admin'], 'prefix' => 'admin']
     Route::apiResource('category', App\Http\Controllers\Admin\CategoryController::class);
     Route::apiResource('author', App\Http\Controllers\Admin\AuthorController::class);
     Route::apiResource('beat', App\Http\Controllers\Admin\BeatController::class);
+    Route::apiResource('users', App\Http\Controllers\Admin\UserController::class);
+    Route::get('/sales', [App\Http\Controllers\Admin\SaleController::class, 'index']);
+    Route::get('/sales/{period}', [App\Http\Controllers\Admin\SaleController::class, 'period'])->where('period', 'day|week|month|year');
 });
