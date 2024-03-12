@@ -25,6 +25,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'lang' => 'nullable',
             'email' => 'required|email',
             'password' => [
                 'required',
@@ -32,7 +33,11 @@ class LoginRequest extends FormRequest
                 function(string $attribute, mixed $value, Closure $fail): void {
                     $user = User::where('email', $this->email);
                     if(!$user->exists() || !Hash::check($value, $user->pluck('password')->first())){
-                        $fail('Неверный Email или пароль');
+                        if($this->lang == 'en'){
+                            $fail('Incorrect Email or Password');
+                        }else {
+                            $fail('Неверный Email или пароль');
+                        }
                     }
                 }
             ],
@@ -42,12 +47,22 @@ class LoginRequest extends FormRequest
 
     public function messages(): array
     {
-        return [
-            'email.required' => 'Введите email',
-            'email.email' => 'Неверный формат email',
+        if($this->lang == 'en'){
+            return [
+                'email.required' => 'Enter email',
+                'email.email' => 'Invalid email format',
 
-            'password.required' => 'Введите пароль',
-            'password.string' => 'Пароль должен быть строкой'
-        ];
+                'password.required' => 'Enter password',
+                'password.string' => 'Password must be a string'
+            ];
+        } else {
+            return [
+                'email.required' => 'Введите email',
+                'email.email' => 'Неверный формат email',
+
+                'password.required' => 'Введите пароль',
+                'password.string' => 'Пароль должен быть строкой'
+            ];
+        }
     }
 }

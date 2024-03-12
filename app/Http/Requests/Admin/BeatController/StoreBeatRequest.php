@@ -27,7 +27,8 @@ class StoreBeatRequest extends FormRequest
             'name' => 'required|string',
             'price' => 'required|integer',
             'demo_file' => 'required|file',
-            'full_file' => 'required|file'
+            'full_file' => 'required|file',
+            'en_name' => 'nullable|string'
         ];
     }
 

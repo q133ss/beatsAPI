@@ -27,7 +27,8 @@ class UpdateBeatRequest extends FormRequest
             'name' => 'required|string',
             'price' => 'required|integer',
             'demo_file' => 'nullable|file',
-            'full_file' => 'nullable|file'
+            'full_file' => 'nullable|file',
+            'en_name' => 'nullable|string'
         ];
     }
 

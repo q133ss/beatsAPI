@@ -22,15 +22,23 @@ class ForgotRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|exists:users,email'
+            'email' => 'required|exists:users,email',
+            'lang' => 'nullable'
         ];
     }
 
     public function messages(): array
     {
-        return [
-            'email.required' => 'Введите email',
-            'email.exists' => 'Пользователь с таким email не найден'
-        ];
+        if($this->lang == 'en'){
+            return [
+                'email.required' => 'Enter your email',
+                'email.exists' => 'User with this email not found'
+            ];
+        }else {
+            return [
+                'email.required' => 'Введите email',
+                'email.exists' => 'Пользователь с таким email не найден'
+            ];
+        }
     }
 }

@@ -23,6 +23,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'en_name' => 'nullable|string',
             'parent_id' => 'nullable|integer'
         ];
     }

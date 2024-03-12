@@ -35,7 +35,11 @@ class ResetRequest extends FormRequest
                         ->where('token', $value)
                         ->exists())
                     {
-                        $fail('Неверный токен');
+                        if($this->lang == 'en') {
+                            $fail('Invalid token');
+                        }else{
+                            $fail('Неверный токен');
+                        }
                     }
                 }
             ],
@@ -51,30 +55,54 @@ class ResetRequest extends FormRequest
                 function(string $attribute, mixed $value, Closure $fail) : void
                 {
                     if($value != $this->password){
-                        $fail('Пароли не совпадают');
+                        if($this->lang == 'en'){
+                            $fail('Password mismatch');
+                        }else {
+                            $fail('Пароли не совпадают');
+                        }
                     }
                 }
-            ]
+            ],
+            'lang' => 'nullable'
         ];
     }
 
     public function messages(): array
     {
-        return [
-            'token.required' => 'Токен не указан',
-            'token.string' => 'Токен должен быть строкой',
-            'token.exists' => 'Неверный токен',
+        if($this->lang == 'en'){
+            return [
+                'token.required' => 'Token is not specified',
+                'token.string' => 'Token must be a string',
+                'token.exists' => 'Invalid token',
 
-            'email.required' => 'Email не указан',
-            'email.email' => 'Неверный формат Email',
-            'email.exists' => 'Пользователь не найден',
+                'email.required' => 'Email is not specified',
+                'email.email' => 'Invalid email format',
+                'email.exists' => 'User not found',
 
-            'password.required' => 'Укажите пароль',
-            'password.string' => 'Пароль должен быть строкой',
-            'password.min' => 'Пароль должен содержать, как минимум 8 символов',
+                'password.required' => 'Specify a password',
+                'password.string' => 'Password must be a string',
+                'password.min' => 'Password must contain at least 8 characters',
 
-            're_password.required' => 'Повторите пароль',
-            're_password.string' => 'Повторный пароль должен быть строкой'
-        ];
+                're_password.required' => 'Repeat the password',
+                're_password.string' => 'Repeated password must be a string'
+            ];
+        }else{
+            return [
+                'token.required' => 'Токен не указан',
+                'token.string' => 'Токен должен быть строкой',
+                'token.exists' => 'Неверный токен',
+
+                'email.required' => 'Email не указан',
+                'email.email' => 'Неверный формат Email',
+                'email.exists' => 'Пользователь не найден',
+
+                'password.required' => 'Укажите пароль',
+                'password.string' => 'Пароль должен быть строкой',
+                'password.min' => 'Пароль должен содержать, как минимум 8 символов',
+
+                're_password.required' => 'Повторите пароль',
+                're_password.string' => 'Повторный пароль должен быть строкой'
+            ];
+        }
     }
 }
