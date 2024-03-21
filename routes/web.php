@@ -28,4 +28,5 @@ Route::middleware('auth', 'is.admin')->group(function (){
     Route::resource('category', App\Http\Controllers\Front\CategoryController::class);
     Route::resource('author', App\Http\Controllers\Front\AuthorController::class);
     Route::resource('beat', App\Http\Controllers\Front\BeatController::class);
+    Route::resource('user', App\Http\Controllers\Front\UserController::class);
 });

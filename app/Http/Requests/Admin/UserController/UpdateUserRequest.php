@@ -22,17 +22,19 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255',
-            'email' => 'string|email|max:255|unique:users,email,' . $this->user->id,
-            'password' => 'string|min:8|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $this->user->id,
+            'password' => 'nullable|string|min:8|max:255',
         ];
     }
 
     public function messages(): array
     {
         return [
+            'name.required' => 'Поле "Имя" обязательное.',
             'name.string' => 'Поле "Имя" должно быть строкой.',
             'name.max' => 'Поле "Имя" не должно превышать 255 символов.',
+            'email.required' => 'Поле "Email" обязательное.',
             'email.string' => 'Поле "Email" должно быть строкой.',
             'email.email' => 'Поле "Email" должно быть валидным email адресом.',
             'email.unique' => 'Пользователь с таким "Email" уже существует.',
