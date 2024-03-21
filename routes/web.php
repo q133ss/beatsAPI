@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/login', 'auth.login')->name('login')->middleware('guest');
+Route::post('/login', [App\Http\Controllers\Front\AuthController::class, 'login'])->middleware('guest');
+
+Route::get('/logout', function (){
+    Auth()->logout();
+    return to_route('login');
+});
+
+Route::middleware('auth', 'is.admin')->group(function (){
+    Route::get('/', function (){
+        return to_route('category.index');
+    })->name('index');
+    Route::resource('category', App\Http\Controllers\Front\CategoryController::class);
 });

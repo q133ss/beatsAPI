@@ -14,4 +14,14 @@ class Category extends Model
     {
         return $this->where('parent_id', $this->id);
     }
+
+    public function getChildren()
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
+    public function getParent()
+    {
+        return $this->hasOne(Category::class, 'id', 'parent_id');
+    }
 }
