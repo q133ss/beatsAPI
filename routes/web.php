@@ -29,4 +29,6 @@ Route::middleware('auth', 'is.admin')->group(function (){
     Route::resource('author', App\Http\Controllers\Front\AuthorController::class);
     Route::resource('beat', App\Http\Controllers\Front\BeatController::class);
     Route::resource('user', App\Http\Controllers\Front\UserController::class);
+    Route::get('/sales', [App\Http\Controllers\Front\SaleController::class, 'index'])->name('sales.index');
+    Route::get('/sales/{period}', [App\Http\Controllers\Front\SaleController::class, 'period'])->name('sales.period');
 });
