@@ -1,8 +1,8 @@
 @extends('layouts.admin')
-@section('title', 'Категории')
+@section('title', 'Авторы')
 @section('content')
     <!-- Basic Tables start -->
-    <a href="{{route('category.create')}}" class="btn btn-primary mb-2">Добавить</a>
+    <a href="{{route('author.create')}}" class="btn btn-primary mb-2">Добавить</a>
     <div class="row" id="basic-table">
         <div class="col-12">
             <div class="card">
@@ -12,19 +12,17 @@
                         <tr>
                             <th>ID</th>
                             <th>Название</th>
-                            <th>Родительская категория</th>
                             <th>Действия</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categories as $category)
+                        @foreach($authors as $author)
                             <tr>
-                                <td>{{$category->id}}</td>
-                                <td>{{$category->name}}</td>
-                                <td>---</td>
+                                <td>{{$author->id}}</td>
+                                <td>{{$author->name}}</td>
                                 <td>
-                                    <a href="{{route('category.edit', $category->id)}}">Изменить</a>
-                                    <form action="{{route('category.destroy', $category->id)}}" style="display: inline-block" method="POST">
+                                    <a href="{{route('author.edit', $author->id)}}">Изменить</a>
+                                    <form action="{{route('author.destroy', $author->id)}}" style="display: inline-block" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn">
@@ -33,7 +31,6 @@
                                     </form>
                                 </td>
                             </tr>
-                            @include('category.child', ['children' => $category->getChildren])
                         @endforeach
                         </tbody>
                     </table>

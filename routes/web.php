@@ -26,4 +26,5 @@ Route::middleware('auth', 'is.admin')->group(function (){
         return to_route('category.index');
     })->name('index');
     Route::resource('category', App\Http\Controllers\Front\CategoryController::class);
+    Route::resource('author', App\Http\Controllers\Front\AuthorController::class);
 });
