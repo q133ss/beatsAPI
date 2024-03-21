@@ -29,4 +29,14 @@ class Beat extends Model
                 $query->where('category_id', $category);
             });
     }
+
+    public function author()
+    {
+        return $this->hasOne(Author::class, 'id', 'author_id');
+    }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }

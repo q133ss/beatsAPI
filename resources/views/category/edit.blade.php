@@ -18,6 +18,11 @@
                     </div>
 
                     <div>
+                        <label for="defaultFormControlInput" class="form-label">Название на английском</label>
+                        <input name="en_name" type="text" class="form-control" id="defaultFormControlInput" placeholder="category" value="{{$category->en_name}}" aria-describedby="defaultFormControlHelp">
+                    </div>
+
+                    <div>
                         <label for="defaultFormControlInput" class="form-label">Родительская категория</label>
                         <select class="form-select" id="exampleFormControlSelect1" name="parent_id">
                             <option value="">Отсутствует</option>
