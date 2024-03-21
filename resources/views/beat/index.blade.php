@@ -45,6 +45,11 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                    <div style="display: flex; justify-content: center">
+                        {{$beats->links()}}
+                    </div>
+
                 </div>
             </div>
         </div>

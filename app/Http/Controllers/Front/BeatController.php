@@ -17,7 +17,7 @@ class BeatController extends Controller
      */
     public function index()
     {
-        $beats = Beat::with('author', 'category', 'demoFile', 'fullFile')->orderBy('created_at', 'DESC')->get();
+        $beats = Beat::with('author', 'category', 'demoFile', 'fullFile')->orderBy('created_at', 'DESC')->paginate();
         return view('beat.index', compact('beats'));
     }
 
