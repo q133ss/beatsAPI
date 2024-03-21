@@ -59,3 +59,4 @@ Route::get('/category', [App\Http\Controllers\Admin\CategoryController::class, '
 Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index']);
 Route::get('/beat/{id}', [App\Http\Controllers\BeatController::class, 'show']);
 Route::post('/pay', [App\Http\Controllers\PayController::class, 'pay']);
+Route::post('/application', [App\Http\Controllers\ApplicationController::class, 'store']);
